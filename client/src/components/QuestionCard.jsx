@@ -1,6 +1,6 @@
 // Shows one question, its four options, and the result once an option is picked.
 export default function QuestionCard({ data, picked, onPick }) {
-  const { question, options, answer } = data;
+  const { question, options, answer, funFact } = data;
 
   return (
     <div className="card">
@@ -28,9 +28,16 @@ export default function QuestionCard({ data, picked, onPick }) {
       </div>
 
       {picked && (
-        <p className="result">
-          {picked === answer ? 'Correct!' : `Nope — the answer was ${answer}.`}
-        </p>
+        <>
+          <p className="result">
+            {picked === answer ? 'Correct!' : `Nope — the answer was ${answer}.`}
+          </p>
+          {funFact && (
+            <div className="fun-fact">
+              <strong>Did you know?</strong> {funFact}
+            </div>
+          )}
+        </>
       )}
     </div>
   );
