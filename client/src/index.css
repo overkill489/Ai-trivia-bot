@@ -103,6 +103,18 @@ button:disabled {
   border-radius: 16px;
   padding: 24px;
   margin-top: 8px;
+  position: relative;
+}
+
+.best-score {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .question {
@@ -148,8 +160,9 @@ button:disabled {
 }
 
 .fun-fact strong {
+  display: block;
   color: var(--accent);
-  margin-right: 4px;
+  margin-bottom: 4px;
 }
 
 .error {

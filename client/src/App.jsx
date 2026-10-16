@@ -8,6 +8,7 @@ export default function App() {
   const [question, setQuestion] = useState(null);
   const [picked, setPicked] = useState(null);
   const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -41,7 +42,16 @@ export default function App() {
 
   function pick(option) {
     setPicked(option);
-    if (option === question.answer) setScore((s) => s + 1);
+    if (option === question.answer) {
+      setScore((s) => {
+        const next = s + 1;
+        if (next > bestScore) setBestScore(next);
+        return next;
+      });
+    } else {
+      if (score > bestScore) setBestScore(score);
+      setScore(0);
+    }
   }
 
   return (
@@ -63,7 +73,7 @@ export default function App() {
       <PhotoRound onSubmit={askPhoto} loading={loading} />
 
       {error && <p className="error">{error}</p>}
-      {question && <QuestionCard data={question} picked={picked} onPick={pick} />}
+      {question && <QuestionCard data={question} picked={picked} onPick={pick} bestScore={bestScore} />}
     </main>
   );
 }
